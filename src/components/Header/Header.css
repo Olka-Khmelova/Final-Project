@@ -1,0 +1,44 @@
+.header {
+    padding: 5px 15px 5px 35px;
+    background-color: #4D88ED;
+    display: flex;
+    align-items: center;
+}
+
+.search {
+    width: 297px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: white;
+    background-image: url(../../assets/icons/search_icon.svg);
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+}
+
+.name {
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.icons-block {
+    display: flex;
+}
+
+.icon {
+    padding-right: 10px;
+    margin-right: 5px;
+}
+
+.icon-loupe path {
+    fill: white;
+}

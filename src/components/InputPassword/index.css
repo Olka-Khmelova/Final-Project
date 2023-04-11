@@ -1,0 +1,9 @@
+.password_input_container {
+    position: relative;
+}
+.password_img {
+    width: 20px;
+    position: absolute;
+    top: 12px;
+    right: 42px;
+}

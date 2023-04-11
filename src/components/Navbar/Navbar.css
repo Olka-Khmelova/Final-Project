@@ -1,0 +1,29 @@
+.navbar_container {
+    width: 20%;
+    background-color: #E5E5E5;
+    position: fixed;
+    left: 0;
+    top: 70px;
+
+}
+.navbar_container a {
+    text-decoration: none;
+    color: #000;
+}
+.navbar_container a:hover {
+    color: #4D88ED;
+}
+
+.navbar_container a.active {
+    color: #fff;
+}
+
+.navbar_list {
+    list-style: none;
+    margin: 0px;
+    padding: 20px 10px;
+
+}
+.navbar_item {
+    margin: 10px 0px;
+}

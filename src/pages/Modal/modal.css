@@ -1,0 +1,264 @@
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    /* display: none; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .modal_active {
+    display: flex;
+} */
+
+.modal-conteiner {
+    width: 763px;
+    height: 454px;
+    background-color: white;
+    display: flex;
+}
+
+.photo-block {
+    position: relative;
+    min-width: 65%;
+    background-color: black;
+    
+}
+
+.photo {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.common {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.modal-user {
+    margin: 11px 0 22px 14px;
+    display: flex;
+    align-items: center;
+}
+
+.modal-user:after {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    margin-top: 56px;
+    margin-bottom: 11px;
+    left: 50%;
+    top: 10%;
+    content: '';
+    background-color: #D9D9D9;
+    transform: translateX(-50%);
+    display: block;
+    
+}
+
+.avatar-modal-block {
+    width: 50px;
+    margin-right: 5px;
+}
+
+.avatar-modal {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    border-radius: 50%;
+    border: white solid 1px;
+}
+
+.comments-view {
+    margin-left: 15px;
+    margin-right: 25px;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.modal-form {
+    width: 100%;
+    position: relative;
+}
+
+.modal-active:before{
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    margin-top: 20px;
+    margin-bottom: 9px;
+    left: 50%;
+    bottom: 84%;
+    content: '';
+    background-color: #D9D9D9;
+    transform: translateX(-50%);
+    display: block;
+    
+}
+
+.modal-active {
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.icon-items {
+    margin-top: 10px;
+    display: flex;
+    padding-left: 0;
+}
+
+.icon {
+    padding-right: 10px;
+}
+
+.number-likes {
+    font-size: 10px;
+    line-height: 12px;
+}
+
+.number-likes span {
+    font-weight: bold;
+}
+
+.like path {
+    fill: red;
+}
+
+.comments-block::before {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    margin-top: 10px;
+    left: 50%;
+    bottom: 44%;
+    content: '';
+    background-color: #D9D9D9;
+    transform: translateX(-50%);
+    display: block;   
+}
+
+.comments-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment {
+    padding-left: 6px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 12px;
+    line-height: 14px;
+    color: #6A6262;
+    border: none;
+}
+
+.button-send {
+    padding-right: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #4D88ED;
+    background-color: transparent;
+    border: none;
+}
+
+.modal-new-post {
+    width: 500px;
+    background-color: white;
+}
+
+.new-post-block {
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-photo {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+}
+
+label.filebutton {
+    position:relative;
+    width: 180px;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    font: 14px/50px Tahoma;
+    border: 1px solid #D9D9D9;
+    color: #999999;
+    display: block;
+    overflow: hidden;
+}
+
+label span input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    z-index: 999;
+    line-height: 0;
+    font-size: 50px;
+    top: -2px;
+    left: -700px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.photo-caption {
+    width: 300px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: 1px solid  #D9D9D9;
+    border-radius: 5px;
+}
+
+.btn-add {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 15px 30px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #4D88ED;
+    color: white;
+}
+
+.title-header {
+    margin-right: 270px;
+    color: white;
+}
+
+.close-icon {
+    position: absolute;
+    top: -14px;
+    cursor: pointer;
+}
+
+.close-modal {
+    position: relative;
+}

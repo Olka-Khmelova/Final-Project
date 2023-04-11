@@ -1,0 +1,91 @@
+.setting-wrapper {
+    padding: 30px 40px 0;
+}
+
+.setting-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.file-field {
+    padding: 1px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.file-field input[type=file] {
+    height: 0vh;
+    outline: 0;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.file-field .label {
+    width: 100px;
+    margin: 0;
+    display: block;
+    cursor: pointer;
+    text-align: center;
+}
+
+.name-user {
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+}
+
+.user-data {
+    padding: 40px;
+}
+
+.block {
+    margin-bottom: 30px;
+    display: flex;
+}
+
+.aside {
+    width: 25%;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.change-text {
+    width: 50%;
+    margin-top: 6px;
+}
+
+.text{
+    width: 80%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+aside label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.btn {
+    text-align: center;
+}
+
+.btn-subscribe {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    width: 30%;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #4D88ED;
+    border-radius: 5px;
+}
+
+.error-form {
+    color: red;
+}

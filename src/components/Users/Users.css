@@ -1,0 +1,17 @@
+.users_container {
+    width: 726px;
+    height: 66px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 14px;
+}
+.users_img {
+    width: 50px;
+    border-radius: 50%;
+}
+.users_list {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}

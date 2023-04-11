@@ -47,7 +47,7 @@ const Header = ({isSearch, title, updateSearchValue}) => {
                 <ul className="icons-block">
                     <li className="icon"><NavLink to="/feeds"><OpenFeeds/></NavLink></li>
                     <li className="icon"><NavLink to="/profile"><UserProfile/></NavLink></li>
-                    <li className="icon" onClick={logoutUser}><LogoutUser/></li>
+                    <li className="icon" onClick={logoutUser}><NavLink to="/"><LogoutUser/></NavLink></li>
                 </ul>
             </div>
         </header>

@@ -5,7 +5,7 @@ import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import { Like } from '../../components/Icons/Icons';
 import { Forward } from '../../components/Icons/Icons';
-import { getFeedsSelector, getUserDataSelector } from '../../store/selectors';
+import { getAuthStatusSelector, getFeedsSelector, getUserDataSelector } from '../../store/selectors';
 import { getFeedThunk, likePostFromFeedThunk, getCurrentUserThunk, getUserByIdThunk } from '../../store/thunks';
 import { useDispatch, useSelector } from 'react-redux';
 import useIndificate from '../../helpers/useIdificate';
@@ -37,7 +37,6 @@ const Feeds = () => {
     const likePost = (postId) => {
         dispatch(likePostFromFeedThunk(postId));
     }
-
     const getFeedById = (postId) => {
         if (feeds) {
             return feeds.find(feed => feed._id === postId);
@@ -63,7 +62,7 @@ const Feeds = () => {
                                         <div className="post">
                                             <div className="photo-wrapper">
                                                 <NavLink to={`/profile/${element.ownerId}`}>
-                                                    <img className="post-photo" src={element.imgUrl} alt="post"/>
+                                                <img className="post-photo" src={element.imgUrl} alt="post"/>
                                                 </NavLink>
                                             </div>
                                             <form className="modal-form">

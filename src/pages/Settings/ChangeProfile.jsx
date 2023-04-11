@@ -33,13 +33,11 @@ const ChangeProfile = () => {
         }
     }, [dispatch, userId]);
 
-
-    const uploadAvatar = async (e) => {
-        debugger;
-        const base64Url = await convertToBase64(e.target.files[0]);
-        e.target.value = null;
-        setAvatar(base64Url);
-    }
+        const handelAvatarChange = async (e) => {
+            const base64Url = await convertToBase64(e.target.files[0]);
+            e.target.value = null;
+            setAvatar(base64Url);
+        }
 
     const onSubmit = (data) => {
         dispatch(changeCurrentUserThunk({...data, avatar}))
@@ -57,9 +55,7 @@ const ChangeProfile = () => {
                                 type="file" 
                                 id="avatar" 
                                 name="avatar" 
-                                onChange={uploadAvatar} 
-                                error={formState.errors.avatar}
-                                {...register('avatar', fileValidation)}
+                                onChange={handelAvatarChange} 
                             />
                         </div>
                         <div className="error-form"></div>

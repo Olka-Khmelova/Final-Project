@@ -8,15 +8,17 @@ import './Settings.css';
 import { toast, Slide, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { passwordValidationData } from '../../helpers/validation';
+import Input from '../../components/Input/Input';
 import InputPassword from '../../components/InputPassword';
 
 
 
 const ChangePassword = () => {
         const user = useSelector(getUserDataSelector);
-        const { register, handleSubmit, formState } = useForm({
+        const { register, handleSubmit, formState,   getValues } = useForm({
             defaultValues: {
                 password: user.password,
+                confirmPassword: null,
             }
         });
     
@@ -42,6 +44,7 @@ const ChangePassword = () => {
     }
     const dispatch = useDispatch();
     const onSubmitPassword = ({ password, confirmPassword }) => {
+        debugger
         if (password !== confirmPassword) {
           toast.error('Passwords are not equal', {
             position: "top-center",
@@ -67,14 +70,16 @@ const ChangePassword = () => {
                         <label>New Password</label>
                     </aside>
                     <div className="change-text">
-                        <InputPassword
+                        <Input
                             className="text"
                             id="password" 
                             type="password" 
                             name="password" 
                             placeholder="password"
                             error={formState.errors.message}
-                            {...register('password', passwordValidationData)}
+                            {...register("password", {
+                                required: true
+                               })}
                         />
                         <div className="error-form"></div>
                     </div>
@@ -84,14 +89,20 @@ const ChangePassword = () => {
                         <label>Confirm new password</label>
                     </aside>
                     <div className="change-text">
-                        <InputPassword
+                        <Input
                             className="text"
                             id="confirmPassword" 
                             type="password" 
                             name="confirmPassword" 
                             placeholder="confirm password"
                             error={formState.errors.message}
-                            {...register('confirmPassword', passwordValidationData)}
+                            {...register("confirmPassword", {
+                                required: true,
+                                    validate: (value) => { 
+                                        const { password } = getValues();
+                                        return password === value || 'Passwords are not equal';
+                                  }
+                                })}
                         />
                         <div className="error-form"></div>
                     </div>

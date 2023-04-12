@@ -13,18 +13,7 @@ const ModalNewPost = ({closeModalNewPostFunction}) => {
     
     const { handleSubmit, register } = useForm();
 
-    // const setPostImage = (e) => {
-    //     debugger;
-    //     let reader = new FileReader();
-    //     let file = e.target.files[0];
-    //     reader.onloadend = () => {
-    //         updatePostImage(reader.result);
-    //     }
-    //     reader.readAsDataURL(file)
-    // }
-
     const onSubmit = (value, e) => {
-        debugger
         e.preventDefault();
         const file = value.postImg[0];
         const title = value.title;
@@ -41,7 +30,7 @@ const ModalNewPost = ({closeModalNewPostFunction}) => {
         <div className="modal">
             <div className="modal-new-post">
                 <form className="new-post-block" onSubmit={handleSubmit(onSubmit)}>
-                    <div className="header">
+                    <div className="new-post-header">
                         <h3 className="title-header">New publication</h3>
                         <CloseModal closeModal={closeModalNewPostFunction}/>
                     </div>

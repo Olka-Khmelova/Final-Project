@@ -3,23 +3,29 @@ import Input from "../Input/Input";
 import { EyeIcon, EyeslashIcon } from "../Icons/Icons";
 import './index.css';
 
-const InputPassword = (props) => {
+const InputPassword = React.forwardRef(({
+    label,
+    error,
+    onChange,
+    ...props
+  }, ref) => {
     const [type, setType] = useState(props.type || 'password');
 
     const handleClick = () => {
         setType(type === 'password' ? 'text': 'password');
     }
-
-    const newProps = {...props, type};
-
     return (
-        <div className='password_input_container'>
-            <Input {...newProps}/>
+        <div className='input'>
+            <label className="input_label">
+              <span className="input_labelText">{label}</span>
+              <input ref={ref} type={type} {...props} onChange={onChange}/>
+              {error && <p className="input_error">{error.message}</p>}
             <div className='password_img' onClick={handleClick}>
-                {type === 'password' ? <EyeslashIcon /> : <EyeIcon />}
+                {type === 'password' ? <EyeIcon /> : <EyeslashIcon />}
             </div>
+            </label>
         </div>
     )
-}
+})
 
 export default InputPassword;

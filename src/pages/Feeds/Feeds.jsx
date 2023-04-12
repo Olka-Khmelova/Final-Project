@@ -5,7 +5,8 @@ import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import { Like } from '../../components/Icons/Icons';
 import { Forward } from '../../components/Icons/Icons';
-import { getAuthStatusSelector, getFeedsSelector, getUserDataSelector } from '../../store/selectors';
+import { UserAvatar } from '../../components/Icons/Icons';
+import { getAuthStatusSelector, getFeedsSelector, getUserDataSelector} from '../../store/selectors';
 import { getFeedThunk, likePostFromFeedThunk, getCurrentUserThunk, getUserByIdThunk } from '../../store/thunks';
 import { useDispatch, useSelector } from 'react-redux';
 import useIndificate from '../../helpers/useIdificate';
@@ -15,14 +16,14 @@ const Feeds = () => {
     const dispatch = useDispatch();
     const feeds = useSelector(getFeedsSelector);
     const currentUser = useSelector(getUserDataSelector);
-    const { userId } = useParams();
 
-    useEffect(() => {
-        dispatch(getCurrentUserThunk());
-        if (userId) {
-            dispatch(getUserByIdThunk(userId));
-        }
-    }, [dispatch, userId]);
+
+    // useEffect(() => {
+    //     dispatch(getCurrentUserThunk());
+    //     if (userId) {
+    //         dispatch(getUserByIdThunk(userId));
+    //     }
+    // }, [dispatch, userId]);
 
 
     useEffect(() => {
@@ -44,6 +45,7 @@ const Feeds = () => {
         return [];
     }
 
+
     const isLiked = (postId) => {
         const feed = getFeedById(postId);
         return feed.likes.map(user => user.login).find(userLogin => userLogin === currentLogin) ? true : false;
@@ -62,6 +64,11 @@ const Feeds = () => {
                                         <div className="post">
                                             <div className="photo-wrapper">
                                                 <NavLink to={`/profile/${element.ownerId}`}>
+                                                    <div className="autor-post-info">
+                                                        {<UserAvatar />}
+                                                        <p className="autor-post-title">{element.ownerId}</p>
+                                                        </div>
+
                                                 <img className="post-photo" src={element.imgUrl} alt="post"/>
                                                 </NavLink>
                                             </div>

@@ -25,7 +25,6 @@ import {
 export const registrationThunk = (userData, redirectToLogin) => {
     return async () => {
       try {
-        debugger
         await registrationFetch(userData);
   
         toast.success('Registration success', {
@@ -44,7 +43,6 @@ export const registrationThunk = (userData, redirectToLogin) => {
 export const loginThunk = (userData) => {
     return async (dispatch) => {
       try {
-        debugger
         const { access_token } = await loginFetch(userData);
         localStorage.setItem('access_token', access_token);
         dispatch(getCurrentUserThunk())

@@ -11,7 +11,8 @@
 }
 
 .user-wrapper {
-    padding: 0 35px 0;
+    width: 80%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,19 +100,20 @@
 }
 
 .publication {
-    width: 33.333%;
-    padding-left: 10px;
-    padding-right: 10px;
+    width: 30%;
+    margin: 0 auto;
 }
 
 .img {
     width: 100%;
-    max-width: 200px;
     height: 200px;
-    padding-bottom: 20px;
-    vertical-align: top;
 }
+@media (max-width: 1020px) {
+    .user-wrapper {
+        width: 90%;
+    }
 
+}
 @media (max-width: 768px) {
     .header-block {
         display: flex;

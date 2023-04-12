@@ -1,5 +1,8 @@
 .header {
-    padding: 5px 15px 5px 35px;
+    position: fixed;
+    width: 100%;
+    height: 65px;
+    z-index: 100;
     background-color: #4D88ED;
     display: flex;
     align-items: center;

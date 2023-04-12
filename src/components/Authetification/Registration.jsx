@@ -9,11 +9,12 @@ import { useForm } from 'react-hook-form';
 import { loginValidationData,
     emailValidationData,
     passwordValidationData } from '../../helpers/validation';
+import AuthWrapper from '../../containers/AuthWrapper/AuthWrapper';
 import InputPassword from '../InputPassword';
+import './index.css';
 
 
 const Registration = () => {
-    debugger;
     const dispatch = useDispatch();
     const { register, handleSubmit, formState } = useForm();
     let navigate = useNavigate();
@@ -25,20 +26,19 @@ const Registration = () => {
     }
   
     const onSubmit = (value) => {
-        debugger
       dispatch(registrationThunk(value, redirectToLogin))
     }
   
     return (
+        <AuthWrapper>
         <div className="content-block">
             <p className="heading">Sign Up</p>
             <ToastContainer/>
             <form className="form-block" onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                    <label>Login</label>
                     <Input
                         className="input-block"
-                        id="login" 
+                        label="Login"
                         type="text" 
                         name="login" 
                         placeholder="Enter your login"
@@ -46,10 +46,9 @@ const Registration = () => {
                         {...register("login", loginValidationData)}
                     />
                     <div className="error-form">{}</div>
-                    <label>Email</label>
                     <Input
                         className="input-block"
-                        id ="email" 
+                        label="Email"
                         type="text" 
                         name="email" 
                         placeholder="Enter your email"
@@ -57,11 +56,9 @@ const Registration = () => {
                         {...register("email", emailValidationData)}
                     />
                     <div className="error-form">{}</div>
-                    <label>Password</label>
-                    <Input
+                    <InputPassword
                         className="input-block"
-                        id ="password" 
-                        type="password" 
+                        label="Password"
                         name="password" 
                         placeholder="Enter your password"
                         error={formState.errors.password}
@@ -75,6 +72,7 @@ const Registration = () => {
                 If you have account you can <NavLink className="link" to='/'>Login</NavLink>
             </div>
         </div>
+        </AuthWrapper>
     );
 };
 

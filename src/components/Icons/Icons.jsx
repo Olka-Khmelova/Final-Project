@@ -55,7 +55,7 @@ export const NotFoundUser = () => {
 
 export const UserAvatar = () => {
     return (
-        <Avatar />
+        <Avatar className="user-avatar"/>
     );
 }
 

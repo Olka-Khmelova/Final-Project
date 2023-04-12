@@ -18,13 +18,13 @@ import './Search.css';
 
 const Search = () => {
     const { value } = useParams();
-
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getCurrentUserThunk());
     }, [dispatch]);
 
     const currentUser = useSelector(getUserDataSelector);
+    const currentUserId = currentUser.id;
 
     const [searchValue, updateSearchValue] = useState('');
 
@@ -59,7 +59,8 @@ const Search = () => {
                     {(users && users.length > 0) ?
                         <FoundUsers value={value} users={users} 
                             getFollowButtonName={getFollowButtonName} 
-                            followUser={followUser}/>
+                            followUser={followUser}
+                            currentUserId={currentUserId}/>
                         :
                         <NotFound/> 
                     }
@@ -69,8 +70,9 @@ const Search = () => {
     );
 }
 
-const FoundUsers = ({value, users, getFollowButtonName, followUser}) => {
-    const userElements = users.map(user => <FoundUser value={value} user={user} getFollowButtonName={getFollowButtonName} 
+const FoundUsers = ({value, users, getFollowButtonName, followUser, currentUserId }) => {
+    const userElements = users.filter(user=> user._id !== currentUserId)
+    .map(user => <FoundUser value={value} user={user} getFollowButtonName={getFollowButtonName} 
         followUser={followUser} key={value ? user.id : user._id}/>)
     return (
         <div className="search-wrapper">

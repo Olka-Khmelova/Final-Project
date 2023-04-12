@@ -112,11 +112,9 @@ const Profile = () => {
                                     <div className="operation-block">
                                         <NavLink className="btn-edit-profile" to="/settings">Edit profile</NavLink>
                                         {openModalNewPost ? <ModalNewPost closeModalNewPostFunction={closeModalNewPostFunction}/> : ''}
-                                        <ul className="add-post" onClick={openModalNewPostFunction}>
-                                            <li>
+                                        <div className="add-post" onClick={openModalNewPostFunction} title="Add new post">
                                                 <PlusPost/>
-                                            </li>
-                                        </ul>
+                                        </div>
                                     </div> :
                                     <div className="operation-block">
                                         <Button className="btn-edit-profile" onClick={followUser} name={getFollowButtonName()}/>
@@ -134,6 +132,7 @@ const Profile = () => {
 }
 
 const Publications = ({posts, openModalFunction}) => {
+    console.log("posts"+posts)
     const publicationElements = posts.slice(0).reverse().map(element => 
         <Publication openModalFunction={openModalFunction} publication={element} key={element._id}/>
     );

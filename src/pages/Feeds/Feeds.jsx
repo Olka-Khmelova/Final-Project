@@ -1,4 +1,4 @@
-import React, { useEffect }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import { NavLink} from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
@@ -6,6 +6,7 @@ import Button from '../../components/Button/Button';
 import { Like } from '../../components/Icons/Icons';
 import { Forward } from '../../components/Icons/Icons';
 import { UserAvatar } from '../../components/Icons/Icons';
+import { getUserFetch } from '../../services/Api/UserApi';
 import { getFeedsSelector, getUserDataSelector} from '../../store/selectors';
 import { getFeedThunk, likePostFromFeedThunk, getCurrentUserThunk } from '../../store/thunks';
 import { useDispatch, useSelector } from 'react-redux';
@@ -44,7 +45,6 @@ const Feeds = () => {
         return [];
     }
 
-
     const isLiked = (postId) => {
         const feed = getFeedById(postId);
         return feed.likes.map(user => user.login).find(userLogin => userLogin === currentLogin) ? true : false;
@@ -81,9 +81,12 @@ const Feeds = () => {
                                                             <Forward/>
                                                         </li>
                                                     </ul>
-                                                    <div className="number-likes">
-                                                        Likes <span>who</span> and <span>quantity</span> other...
-                                                    </div>
+                                                    {element.likes.length > 0 ? 
+                                                        <div className="number-likes">
+                                                            Liked by <span>{element.likes.map((elem, i) => i === 0 ? elem.login : null)}</span> {element.likes.length > 1 ? <>and <span>{element.likes.length-1}</span> other...</> : null}
+                                                        </div>
+                                                        : null
+                                                    }
                                                 </div>
                                                 <div className="comments-block">
                                                     <div>

@@ -37,6 +37,18 @@ export const getUsersByLoginFetch = async (userLogin) => {
     return data;
 }
 
+export const getFollowingsAndFollowersByIdFetch = async (userId) => {
+        try {
+            debugger
+            const {data} = await axios.get(`http://52.3.249.107:9000/users/followersAndFollowing/${userId}`);
+            return data;
+}
+        catch(e) {
+            console.log(e);
+        }
+    }
+    
+
 export const updatePasswordFetch = async (updatePassword) => {
     const {data} = await axios.post(`${API_URL}/auth/updatePassword`, updatePassword);
     return data;

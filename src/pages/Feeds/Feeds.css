@@ -6,7 +6,7 @@
 }
 
 .post {
-    width: 65%;
+    width: 435px;
     margin: 0 auto;
     margin-bottom: 30px;
     padding: 10px 15px 15px;
@@ -36,4 +36,10 @@
     flex-direction: row;
     align-items: center;
     padding-bottom: 8px;
+}
+.comments-block {
+    margin-top: 12px;
+}
+.modal-active {
+    padding-top: 10px;
 }

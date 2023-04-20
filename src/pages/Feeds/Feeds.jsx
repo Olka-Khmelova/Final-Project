@@ -1,15 +1,14 @@
 import React, { useEffect }  from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import { Like } from '../../components/Icons/Icons';
 import { Forward } from '../../components/Icons/Icons';
 import { UserAvatar } from '../../components/Icons/Icons';
-import { getAuthStatusSelector, getFeedsSelector, getUserDataSelector} from '../../store/selectors';
-import { getFeedThunk, likePostFromFeedThunk, getCurrentUserThunk, getUserByIdThunk } from '../../store/thunks';
+import { getFeedsSelector, getUserDataSelector} from '../../store/selectors';
+import { getFeedThunk, likePostFromFeedThunk, getCurrentUserThunk } from '../../store/thunks';
 import { useDispatch, useSelector } from 'react-redux';
-import useIndificate from '../../helpers/useIdificate';
 import './Feeds.css';
 
 const Feeds = () => {

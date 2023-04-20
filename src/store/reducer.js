@@ -12,6 +12,9 @@ const createInitialState = () => {
         selectedUser: {},
         selectedPost: {
         },
+        following: [],
+        followers: [],
+
         feeds: []
     }
 }
@@ -46,6 +49,18 @@ const userReducer = (state = createInitialState(), action) => {
                 ...state,
                 selectedUser: action.payload
             }
+        
+        // case ActionTypes.GET_FOLLOWING:
+        //     return {
+        //         ...state,
+        //         following: action.payload
+        //     }
+        //     case ActionTypes.GET_FOLLOWERS:
+        //         return {
+        //             ...state,
+        //             followers: action.payload
+        //         }
+
         case ActionTypes.GET_FEED:
             return {
                 ...state,

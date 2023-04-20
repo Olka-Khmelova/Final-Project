@@ -15,6 +15,7 @@ const AccountRouter = () => {
                 <Route index element={<Feeds />}/>
                     <Route path="search" element={<Search />}/>
                     <Route path="search/:value" element={<Search />}/>
+                    <Route path="search/:value/:userId" element={<Search />}/>
                     <Route path="profile/:userId" element={<Profile />}/>
                     <Route path="profile" element={<Profile />}/>
                     <Route path="feeds" element={<Feeds />}/>

@@ -13,6 +13,8 @@ export const getSelectedPostSelector = state => usersStateSelector(state).select
 export const getSelectedUser  = state => usersStateSelector(state).selectedUser;
 
 export const getFoundUsers = state => usersStateSelector(state).usersList; 
+// export const getFollowers = state => usersStateSelector(state).followers; 
+// export const getFollowings = state => usersStateSelector(state).following; 
 
 export const getFeedsSelector = state => usersStateSelector(state).feeds; 
 

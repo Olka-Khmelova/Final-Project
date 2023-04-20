@@ -42,6 +42,9 @@ const ChangeProfile = () => {
     const onSubmit = (data) => {
         dispatch(changeCurrentUserThunk({...data, avatar}))
     }
+    const deleteAvatar =() => {
+        setAvatar(<UserAvatar/>);
+    }
 
     return (
         <form className="setting-block" onSubmit={handleSubmit(onSubmit)}>
@@ -58,7 +61,6 @@ const ChangeProfile = () => {
                                 onChange={handelAvatarChange} 
                             />
                         </div>
-                        <div className="error-form"></div>
                     </div>
                 </label>
             </div>

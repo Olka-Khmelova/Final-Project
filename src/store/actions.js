@@ -61,3 +61,15 @@ export const getFeedAction = (getFeed) => {
         payload: getFeed
     }
 }
+// export const getFollowingsByIdAction = (following) => {
+//     return {
+//         type: ActionTypes.GET_FOLLOWING,
+//         payload: following
+//     }
+// }
+// export const getFollowersByIdAction = (followers) => {
+//     return {
+//         type: ActionTypes.GET_FOLLOWERS,
+//         payload: followers
+//     }
+// }

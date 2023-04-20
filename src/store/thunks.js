@@ -9,7 +9,8 @@ import {
     getUsersByLoginFetch,
     followUserFetch,
     getFeedFetch,
-    likePostFetch
+    likePostFetch,
+    // getFollowingsAndFollowersByIdFetch
 } from '../services/Api/UserApi';
 import {
     loginAction, 
@@ -19,7 +20,9 @@ import {
     changeCurrentUserAction, 
     getPostByIdAction,
     getUserByLoginAction,
-    getFeedAction
+    getFeedAction,
+    // getFollowingsByIdAction,
+    // getFollowersByIdAction
 } from './actions';
 
 export const registrationThunk = (userData, redirectToLogin) => {
@@ -76,6 +79,7 @@ export const getUserByIdThunk = (userId) => {
         }
     }
 }
+
 
 export const changeCurrentUserThunk = (data) => {
     return async (dispatch) => {
@@ -205,6 +209,28 @@ export const getUserFollowingsByLoginThunk = (userLogin, currentUser) => {
         }
     }
 }
+// export const getFollowingsByIdThunk = (_, userId) => {
+//     return async (dispatch) => {
+//         try {
+//             const { following } = await getFollowingsAndFollowersByIdFetch(userId);
+//             dispatch(getFollowingsByIdAction(following));
+//         }
+//         catch(e) {
+//             console.log(e);
+//         }
+//     }
+// }
+// export const getFollowersByIdThunk = (_, userId) => {
+//     return async (dispatch) => {
+//         try {
+//             const { followers } = await getFollowingsAndFollowersByIdFetch(userId);
+//             dispatch(getFollowersByIdAction(followers));
+//         }
+//         catch(e) {
+//             console.log(e);
+//         }
+//     }
+// }
 
 export const followUserThunk = (userId) => {
     return async(dispatch) => {

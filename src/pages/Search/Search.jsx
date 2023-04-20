@@ -8,72 +8,34 @@ import {
     followUserThunk, 
     getCurrentUserThunk,
     getUserFollowersByLoginThunk,
-    getUserFollowingsByLoginThunk
+    getUserFollowingsByLoginThunk,
+    // getFollowingsByIdThunk,
+    // getFollowersByIdThunk
+    
 } from '../../store/thunks';
 import { useSelector } from 'react-redux';
 import { getUserDataSelector, getFoundUsers } from '../../store/selectors';
 import { NavLink, useParams } from 'react-router-dom';
 import { UserAvatar } from '../../components/Icons/Icons';
+import { getFollowingsAndFollowersByIdFetch } from '../../services/Api/UserApi';
 import './Search.css';
 
-const Search = () => {
-    const { value } = useParams();
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getCurrentUserThunk());
-    }, [dispatch]);
-
-    const currentUser = useSelector(getUserDataSelector);
-    const currentUserId = currentUser.id;
-
-    const [searchValue, updateSearchValue] = useState('');
-
-    useEffect(() => {
-        if (value === 'followers') {
-            dispatch(getUserFollowersByLoginThunk(searchValue, currentUser));
-        } else if (value === 'followings') {
-            dispatch(getUserFollowingsByLoginThunk(searchValue, currentUser));
-        }
-        else { 
-            dispatch(getUsersByLoginThunk(searchValue));
-        }
-    }, [dispatch, value, searchValue, currentUser]);
-
-    const followUser = (userId) => {
-        dispatch(followUserThunk(userId));
-    }
-
-    const users = useSelector(getFoundUsers);
-    const getFollowButtonName = (userId) => {
-        if (currentUser && currentUser.following) {
-            return currentUser.following.find(el => el.id === userId) ? 'Unfollow' : 'Follow';
-        }
-        return 'Follow';
-    }
-
-    return (
-        <>
-            <Header isSearch="true" updateSearchValue={updateSearchValue} title="Search"/>
-            <div className="wrapper">
-                <div className="common-block">
-                    {(users && users.length > 0) ?
-                        <FoundUsers value={value} users={users} 
-                            getFollowButtonName={getFollowButtonName} 
-                            followUser={followUser}
-                            currentUserId={currentUserId}/>
-                        :
-                        <NotFound/> 
-                    }
-                </div>
-            </div>
-        </>
-    );
-}
-
-const FoundUsers = ({value, users, getFollowButtonName, followUser, currentUserId }) => {
-    const userElements = users.filter(user=> user._id !== currentUserId)
+const FoundUsers = ({value, userId, users, following, followers, getFollowButtonName, followUser, currentUserId }) => {
+    let userElements = null;
+    if ( following.length > 0) {
+        userElements =  following.filter(user=> user.id !== currentUserId)
+        .map(user => <FoundUser value={value} user={user} getFollowButtonName={getFollowButtonName} 
+            followUser={followUser} key={ user.id }/>)
+        } else if (followers.length > 0) {
+         userElements =  followers.filter(user=> user.id !== currentUserId)
+        .map(user => <FoundUser value={value} user={user} getFollowButtonName={getFollowButtonName} 
+            followUser={followUser} key={user.id}/>)
+        } else {
+        userElements = users.filter(user=> user._id !== currentUserId)
     .map(user => <FoundUser value={value} user={user} getFollowButtonName={getFollowButtonName} 
         followUser={followUser} key={value ? user.id : user._id}/>)
+    } 
+    
     return (
         <div className="search-wrapper">
             {userElements}
@@ -102,5 +64,94 @@ const FoundUser = ({value, user, getFollowButtonName, followUser}) => {
         </div>
     );
 }
+
+const Search = () => {
+    const { value, userId } = useParams();
+    const [following, setFollowing] = useState([]);
+    const [followers, setFollowers] = useState([]);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getCurrentUserThunk());
+    }, [dispatch]);
+
+    const [searchValue, updateSearchValue] = useState('');
+    
+    const currentUser = useSelector(getUserDataSelector);
+    const currentUserId = currentUser.id;
+
+    useEffect(() => {
+    if (value === 'followers' && userId) {
+        return async () => {
+                const { followers } = await getFollowingsAndFollowersByIdFetch(userId);
+                let users = [];
+                if (followers) {
+                    users = followers.filter(user => user.login && user.login.toLowerCase().includes(searchValue.toLowerCase()));
+                }
+                setFollowers(users);
+        }
+    } else if (value === 'followings' && userId) {
+        return async () => {
+            const { following } = await getFollowingsAndFollowersByIdFetch(userId);
+            let users = [];
+                if (following) {
+                    users = following.filter(user => user.login && user.login.toLowerCase().includes(searchValue.toLowerCase()));
+                }
+
+            setFollowing(following);
+        }
+    } else if (value === 'followers') {
+            dispatch(getUserFollowersByLoginThunk(searchValue, currentUser));
+        } else if (value === 'followings') {
+            dispatch(getUserFollowingsByLoginThunk(searchValue, currentUser));
+        }
+        else { 
+            dispatch(getUsersByLoginThunk(searchValue));
+        }
+    }, [dispatch, value, searchValue, currentUser, userId]);
+
+    const followUser = (userId) => {
+        dispatch(followUserThunk(userId));
+    }
+
+    const users = useSelector(getFoundUsers);
+    // const followers = useSelector(getFollowers);
+    // const following = useSelector(getFollowings);
+    const getFollowButtonName = (userId) => {
+        if (currentUser && currentUser.following) {
+            return currentUser.following.find(el => el.id === userId) ? 'Unfollow' : 'Follow';
+        }
+        return 'Follow';
+    }
+
+    return (
+        <>
+            <Header isSearch="true" updateSearchValue={updateSearchValue} title="Search"/>
+            <div className="wrapper">
+                <div className="common-block">
+                    { userId ?
+                        (( followers.length > 0) || (following.length > 0) ?
+                        <FoundUsers value={value} followers={followers} following={following}
+                            getFollowButtonName={getFollowButtonName} 
+                            followUser={followUser}
+                            currentUserId={currentUserId}
+                            userId={userId}/>
+                        :
+                        <NotFound/> )
+                        :
+                        ((users && users.length > 0) ?
+                        <FoundUsers value={value} users={users} followers={followers} following={following}
+                            getFollowButtonName={getFollowButtonName} 
+                            followUser={followUser}
+                            currentUserId={currentUserId}/>
+                        :
+                        <NotFound/> )
+                }
+                </div>
+            </div>
+        </>
+    );
+}
+
+
 
 export default Search;

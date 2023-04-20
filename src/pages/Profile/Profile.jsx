@@ -15,7 +15,6 @@ import './Profile.css';
 
 const Profile = () => {
     const { userId } = useParams();
-
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getCurrentUserThunk());
@@ -35,6 +34,7 @@ const Profile = () => {
         currentUser = null;
         getUserSelector = getUserDataSelector;
     }
+
 
     let user = useSelector(getUserSelector);
     const userAvatar = user.avatar;
@@ -95,13 +95,13 @@ const Profile = () => {
                                         <span>{postsSize}</span>
                                         Posts
                                     </li>
-                                    <NavLink to="/search/followers">
+                                    <NavLink to={isCurrent ? "/search/followers" : `/search/followers/${userId}`}>
                                         <li className="item">
                                             <span>{followersSize}</span>
                                             Followers
                                         </li>
                                     </NavLink>
-                                    <NavLink to="/search/followings">
+                                    <NavLink to={isCurrent ? "/search/followings/" : `/search/followings/${userId}`}>
                                         <li className="item">
                                             <span>{followingSize}</span>
                                             Followings

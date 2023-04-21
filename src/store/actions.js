@@ -48,6 +48,12 @@ export const getPostByIdAction = (getPost) => {
     }
 }
 
+export const getUsersAction = (usersList) => {
+    return {
+        type: ActionTypes.GET_USERS,
+        payload: usersList
+    }
+}
 export const getUserByLoginAction = (getUser) => {
     return {
         type: ActionTypes.GET_USERS_BY_LOGIN,

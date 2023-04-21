@@ -12,6 +12,10 @@ axios.interceptors.request.use(function (config) {
     return Promise.reject(error);
 });
 
+export const getUsersFetch = async () => {
+    const {data} = await axios.get(`http://52.3.249.107:9000/users`);
+    return data;
+}
 export const getUserFetch = async (id) => {
     const {data} = await axios.get(`http://52.3.249.107:9000/users/${id}`);
     return data;

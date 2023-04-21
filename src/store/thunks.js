@@ -10,6 +10,7 @@ import {
     followUserFetch,
     getFeedFetch,
     likePostFetch,
+    getUsersFetch,
     // getFollowingsAndFollowersByIdFetch
 } from '../services/Api/UserApi';
 import {
@@ -21,6 +22,7 @@ import {
     getPostByIdAction,
     getUserByLoginAction,
     getFeedAction,
+    getUsersAction,
     // getFollowingsByIdAction,
     // getFollowersByIdAction
 } from './actions';
@@ -173,6 +175,17 @@ export const getUsersByLoginThunk = (userLogin) => {
         try {
             const users = await getUsersByLoginFetch(userLogin);
             dispatch(getUserByLoginAction(users));
+        }
+        catch(e) {
+            console.log(e); 
+        }
+    }
+}
+export const getUsersThunk = () => {
+    return async (dispatch) => {
+        try {
+            const usersList = await getUsersFetch();
+            dispatch(getUsersAction(usersList));
         }
         catch(e) {
             console.log(e); 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useEffect }  from 'react';
 import { NavLink} from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
@@ -6,9 +6,8 @@ import Button from '../../components/Button/Button';
 import { Like } from '../../components/Icons/Icons';
 import { Forward } from '../../components/Icons/Icons';
 import { UserAvatar } from '../../components/Icons/Icons';
-import { getUserFetch } from '../../services/Api/UserApi';
-import { getFeedsSelector, getUserDataSelector} from '../../store/selectors';
-import { getFeedThunk, likePostFromFeedThunk, getCurrentUserThunk } from '../../store/thunks';
+import { getFeedsSelector, getUserDataSelector, getFoundUsers} from '../../store/selectors';
+import { getFeedThunk, likePostFromFeedThunk, getCurrentUserThunk, getUsersThunk } from '../../store/thunks';
 import { useDispatch, useSelector } from 'react-redux';
 import './Feeds.css';
 
@@ -16,6 +15,7 @@ const Feeds = () => {
     const dispatch = useDispatch();
     const feeds = useSelector(getFeedsSelector);
     const currentUser = useSelector(getUserDataSelector);
+    const usersList = useSelector(getFoundUsers);
 
 
     // useEffect(() => {
@@ -29,6 +29,7 @@ const Feeds = () => {
     useEffect(() => {
         dispatch(getFeedThunk());
         dispatch(getCurrentUserThunk());
+        dispatch(getUsersThunk())
     }, [dispatch]);
 
 
@@ -49,6 +50,10 @@ const Feeds = () => {
         const feed = getFeedById(postId);
         return feed.likes.map(user => user.login).find(userLogin => userLogin === currentLogin) ? true : false;
     }
+    const postAuthor = (id) => {
+        const author = usersList.find(user => user._id === id)
+        return author;
+    }
 
     return (
         <>
@@ -64,8 +69,11 @@ const Feeds = () => {
                                             <div className="photo-wrapper">
                                                 <NavLink to={`/profile/${element.ownerId}`}>
                                                     <div className="autor-post-info">
-                                                        {<UserAvatar />}
-                                                        <p className="autor-post-title">{element.ownerId}</p>
+                                                        {postAuthor(element.ownerId).avatar ? 
+                                                        <img className="avatar-photo" src={postAuthor(element.ownerId).avatar} alt={postAuthor(element.ownerId).login}/>
+                                                        : 
+                                                        <UserAvatar />}
+                                                        <p className="autor-post-title">{postAuthor(element.ownerId).login}</p>
                                                         </div>
 
                                                 <img className="post-photo" src={element.imgUrl} alt="post"/>

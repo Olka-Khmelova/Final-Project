@@ -2,8 +2,6 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: white solid 1px;
-    background-color: white;
 }
 
 .avatar {
@@ -13,35 +11,23 @@
 .user-wrapper {
     width: 80%;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .header-block {
     margin: 37px 0 58px;
     display: flex;
     align-items: center;
-}
-
-.information-block {
-    margin-left: 70px;
-    display: flex;
-    flex-direction: column;
+    justify-content: space-around;
 }
 
 .counter-block {
     margin: 0 0 30px;
-    padding: 0;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 
 .item {
     font-size: 24px;
     line-height: 28px;
-    text-align: center;
 }
 
 .item:nth-child(-n+2) {
@@ -55,22 +41,16 @@
 
 .operation-block {
     margin-bottom: 15px;
-    display: flex;
-    align-items: center;
 }
 
 .btn-edit-profile {
     width: 100%;
     padding: 8px 0;
     font-family: "Roboto";
-    font-style: normal;
-    font-weight: normal;
     font-size: 24px;
     line-height: 28px;
-    text-align: center;
     color: #FFFFFF;
     background: #4D88ED;
-    border-color: #4D88ED;
     border-radius: 5px;
 }
 
@@ -98,11 +78,6 @@
     background-color: #D9D9D9;
     bottom: 100%;
     margin: 25px 0px;
-}
-
-.publication {
-
-    margin: 0 auto;
 }
 
 .img {
@@ -133,8 +108,4 @@
         font-size: 15px;
     }
 
-    .publication {
-        width: 100%;
-        padding-left: 50px;
-    }
 }

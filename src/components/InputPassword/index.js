@@ -18,7 +18,7 @@ const InputPassword = React.forwardRef(({
         <div className='input'>
             <label className="input_label">
               <span className="input_labelText">{label}</span>
-              <input ref={ref} type={type} {...props} onChange={onChange}/>
+              <Input ref={ref} type={type} {...props} onChange={onChange}/>
               {error && <p className="input_error">{error.message}</p>}
             <div className='password_img' onClick={handleClick}>
                 {type === 'password' ? <EyeIcon /> : <EyeslashIcon />}

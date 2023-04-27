@@ -122,7 +122,8 @@
 .icon-items {
     margin-top: 10px;
     display: flex;
-    padding-left: 0;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .icon {
@@ -162,9 +163,7 @@
 }
 
 .comment {
-    padding-left: 6px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
     font-size: 12px;
     line-height: 14px;
     color: #6A6262;

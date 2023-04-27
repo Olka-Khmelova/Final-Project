@@ -6,13 +6,13 @@
     background-color: #4D88ED;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 0px 5px;
 }
 
 .search {
-    width: 297px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
+    width: 300px;
+    margin: 10px 0px;    box-sizing: border-box;
     border: 1px solid white;
     border-radius: 5px;
     font-size: 14px;
@@ -23,23 +23,17 @@
     padding: 12px 20px 12px 40px;
 }
 
-.name {
-    margin-left: auto;
-    margin-right: auto;
+.header-title {
     font-weight: bold;
     font-size: 24px;
     line-height: 28px;
-    text-align: center;
     color: #FFFFFF;
 }
 
 .icons-block {
     display: flex;
-}
-
-.icon {
-    padding-right: 10px;
-    margin-right: 5px;
+    justify-content: space-between;
+    width: 115px;
 }
 
 .icon-loupe path {

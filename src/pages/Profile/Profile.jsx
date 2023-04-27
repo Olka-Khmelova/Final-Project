@@ -92,7 +92,6 @@ const Profile = () => {
             <div className="wrapper">
             {loading ? <Loader /> :
                         (
-                <div className="common-block">
                     <div className="user-wrapper">
 
                         {openModal.open ? <ModalPost closeModalFunction={closeModalFunction} 
@@ -143,7 +142,6 @@ const Profile = () => {
                         <Publications posts={posts} openModalFunction={openModalFunction}/>
 
                     </div>
-                </div>
                     )
                 }
             </div>

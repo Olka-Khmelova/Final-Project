@@ -67,9 +67,7 @@ const Feeds = () => {
         <>
             <Header title="Feeds"/>
             <div className="wrapper">
-                <div className="common-block">
                     <div className="feeds-wrapper">
-                        <div className="post-block">
                             {
                                 loading ? <Loader /> : 
                                 (
@@ -98,18 +96,18 @@ const Feeds = () => {
                                                         <li className="icon">
                                                             <Forward/>
                                                         </li>
-                                                    </ul>
-                                                    {element.likes.length > 0 ? 
+                                                        <li>
+                                                        {element.likes.length > 0 ? 
                                                         <div className="number-likes">
                                                             Liked by <span>{element.likes.map((elem, i) => i === 0 ? elem.login : null)}</span> {element.likes.length > 1 ? <>and <span>{element.likes.length-1}</span> other...</> : null}
                                                         </div>
                                                         : null
                                                     }
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                                 <div className="comments-block">
-                                                    <div>
-                                                        <Input className="comment" placeholder="Add comments..."/>
-                                                    </div>
+                                                    <Input className="comment" placeholder="Add comments..."/>
                                                     <Button className="button-send" name="Send"></Button>
                                                 </div>
                                             </form>
@@ -118,10 +116,8 @@ const Feeds = () => {
                                 })
                                 )
                             }
-                        </div>
                     </div>
                 </div>
-            </div>
         </>
     );
 }

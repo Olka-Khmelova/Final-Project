@@ -11,7 +11,7 @@ const Input = React.forwardRef(({
   return (
       <div className="input">
           <label className="input_label">
-              <span className="input_labelText">{label}</span>
+              <span className="input_label_text">{label}</span>
               <input ref={ref} type={type} {...props} onChange={onChange}/>
               {error && <p className="input_error">{error.message}</p>}
           </label>

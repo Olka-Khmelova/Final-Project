@@ -42,14 +42,12 @@ const Header = ({isSearch, title, updateSearchValue}) => {
                     </NavLink> 
                 }
             </div>
-            <div className="name">{title}</div>
-            <div>
+            <div className="header-title">{title}</div>
                 <ul className="icons-block">
                     <li className="icon" title="Feed"><NavLink to="/feeds"><OpenFeeds/></NavLink></li>
                     <li className="icon" title="Go to profile"><NavLink to="/profile"><UserProfile/></NavLink></li>
                     <li className="icon" title="Logout" onClick={logoutUser}><NavLink to="/"><LogoutUser/></NavLink></li>
                 </ul>
-            </div>
         </header>
     );
 }

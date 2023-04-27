@@ -127,7 +127,7 @@ const Profile = () => {
                                 </ul>
                                 {isCurrent ?
                                     <div className="operation-block">
-                                        <NavLink className="btn-edit-profile" to="/settings">Edit profile</NavLink>
+                                        <NavLink className="btn-edit-profile" title="Edit profile" to="/settings">Edit profile</NavLink>
                                         {openModalNewPost ? <ModalNewPost closeModalNewPostFunction={closeModalNewPostFunction}/> : ''}
                                         <div className="add-post" onClick={openModalNewPostFunction} title="Add new post">
                                                 <PlusPost/>

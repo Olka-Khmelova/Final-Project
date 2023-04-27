@@ -135,6 +135,7 @@ export const likePostFromFeedThunk = (postId) => {
 export const updatePasswordThunk = (data) => {
     return async () => {
         try {
+            debugger
             await updatePasswordFetch(data);
             toast('Password changed successfully');
         }

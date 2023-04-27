@@ -22,8 +22,7 @@ const ChangePassword = () => {
                 confirmPassword: null,
             }
         });
-        console.log(formState.errors)
-    
+        console.log(formState)
     const refPassword = {
         required: {
             value: true,
@@ -67,8 +66,8 @@ const ChangePassword = () => {
                             id="password" 
                             name="password" 
                             placeholder="password"
-                            error={formState.errors}
-                            {...register("password", refPassword)}
+                            error={formState.errors.password}
+                            {...register("password", passwordValidationData)}
                         />
                         <div className="error-form"></div>
                     </div>
@@ -83,7 +82,6 @@ const ChangePassword = () => {
                             id="confirmPassword" 
                             name="confirmPassword" 
                             placeholder="confirm password"
-                            error={formState.errors}
                             {...register("confirmPassword", {
                                 required: true,
                                     validate: (value) => { 

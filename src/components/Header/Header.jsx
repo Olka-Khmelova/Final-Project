@@ -35,7 +35,7 @@ const Header = ({isSearch, title, updateSearchValue}) => {
                     :
                     <NavLink className="btn-edit-profile" to="/search">
                         <ul>
-                            <li className="icon-loupe">
+                            <li className="icon-loupe" title="Search user">
                                 <SearchUser/>
                             </li>
                         </ul> 
@@ -45,9 +45,9 @@ const Header = ({isSearch, title, updateSearchValue}) => {
             <div className="name">{title}</div>
             <div>
                 <ul className="icons-block">
-                    <li className="icon"><NavLink to="/feeds"><OpenFeeds/></NavLink></li>
-                    <li className="icon"><NavLink to="/profile"><UserProfile/></NavLink></li>
-                    <li className="icon" onClick={logoutUser}><NavLink to="/"><LogoutUser/></NavLink></li>
+                    <li className="icon" title="Feed"><NavLink to="/feeds"><OpenFeeds/></NavLink></li>
+                    <li className="icon" title="Go to profile"><NavLink to="/profile"><UserProfile/></NavLink></li>
+                    <li className="icon" title="Logout" onClick={logoutUser}><NavLink to="/"><LogoutUser/></NavLink></li>
                 </ul>
             </div>
         </header>

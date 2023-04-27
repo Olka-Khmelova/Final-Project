@@ -49,8 +49,8 @@ export const loginValidationData = {
     },
   
     pattern: {
-      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,16}$/,
-      message: 'Password can contain large and small latin characters and numbers'
+      value: /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]{8,16}$/,
+      message: 'Password can contain at least one capital and one small latin characters'
     }
   }
   

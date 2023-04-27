@@ -1,8 +1,8 @@
 
 .password_img {
     position: absolute;
-    top: 40px;
-    right: 22px;
+    top: 30%;
+    right: 25%;
     cursor: pointer;
 }
 .input {

@@ -54,6 +54,7 @@ export const getFollowingsAndFollowersByIdFetch = async (userId) => {
     
 
 export const updatePasswordFetch = async (updatePassword) => {
+    debugger
     const {data} = await axios.post(`${API_URL}/auth/updatePassword`, updatePassword);
     return data;
 }

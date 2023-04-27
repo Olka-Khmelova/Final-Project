@@ -1,4 +1,4 @@
-import React, { useEffect }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import { NavLink} from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
@@ -10,9 +10,11 @@ import { getFeedsSelector, getUserDataSelector, getFoundUsers} from '../../store
 import { getFeedThunk, likePostFromFeedThunk, getCurrentUserThunk, getUsersThunk } from '../../store/thunks';
 import { useDispatch, useSelector } from 'react-redux';
 import './Feeds.css';
+import Loader from '../../components/Loader';
 
 const Feeds = () => {
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(true);
     const feeds = useSelector(getFeedsSelector);
     const currentUser = useSelector(getUserDataSelector);
     const usersList = useSelector(getFoundUsers);
@@ -27,9 +29,15 @@ const Feeds = () => {
 
 
     useEffect(() => {
-        dispatch(getFeedThunk());
-        dispatch(getCurrentUserThunk());
+        dispatch(getCurrentUserThunk())
         dispatch(getUsersThunk())
+        dispatch(getFeedThunk())
+        .then(() => {
+            setLoading(false);
+          })
+          .catch(() => {
+            setLoading(false);
+          });
     }, [dispatch]);
 
 
@@ -63,6 +71,8 @@ const Feeds = () => {
                     <div className="feeds-wrapper">
                         <div className="post-block">
                             {
+                                loading ? <Loader /> : 
+                                (
                                 feeds.slice(0).reverse().map(element => {
                                     return(
                                         <div className="post">
@@ -106,6 +116,7 @@ const Feeds = () => {
                                         </div>
                                     )
                                 })
+                                )
                             }
                         </div>
                     </div>

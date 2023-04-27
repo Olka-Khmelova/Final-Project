@@ -19,6 +19,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { UserAvatar } from '../../components/Icons/Icons';
 import { getFollowingsAndFollowersByIdFetch } from '../../services/Api/UserApi';
 import './Search.css';
+import Loader from '../../components/Loader';
 
 const FoundUsers = ({value, userId, users, following, followers, getFollowButtonName, followUser, currentUserId }) => {
     let userElements = null;
@@ -69,9 +70,13 @@ const Search = () => {
     const { value, userId } = useParams();
     const [following, setFollowing] = useState([]);
     const [followers, setFollowers] = useState([]);
+    const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getCurrentUserThunk());
+        dispatch(getCurrentUserThunk())
+        .then(() => {
+            setLoading(false);
+          })
     }, [dispatch]);
 
     const [searchValue, updateSearchValue] = useState('');
@@ -127,6 +132,8 @@ const Search = () => {
         <>
             <Header isSearch="true" updateSearchValue={updateSearchValue} title="Search"/>
             <div className="wrapper">
+                {loading ? <Loader /> :
+                (
                 <div className="common-block">
                     { userId ?
                         (( followers.length > 0) || (following.length > 0) ?
@@ -147,6 +154,8 @@ const Search = () => {
                         <NotFound/> )
                 }
                 </div>
+                )
+            }
             </div>
         </>
     );

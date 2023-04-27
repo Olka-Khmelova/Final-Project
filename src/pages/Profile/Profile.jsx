@@ -12,14 +12,28 @@ import { getCurrentUserThunk, getUserByIdThunk, followUserFromProfileThunk } fro
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import './Profile.css';
+import Loader from '../../components/Loader';
 
 const Profile = () => {
     const { userId } = useParams();
+    const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getCurrentUserThunk());
+        dispatch(getCurrentUserThunk())
+        .then(() => {
+            setLoading(false);
+          })
+          .catch(() => {
+            setLoading(false);
+          });
         if (userId) {
-            dispatch(getUserByIdThunk(userId));
+            dispatch(getUserByIdThunk(userId))
+            .then(() => {
+                setLoading(false);
+              })
+              .catch(() => {
+                setLoading(false);
+              });
         }
     }, [dispatch, userId]);
 
@@ -74,10 +88,13 @@ const Profile = () => {
 
     return (
         <>
-            <Header title={login}/>
+            <Header title={loading ? null : login}/>
             <div className="wrapper">
+            {loading ? <Loader /> :
+                        (
                 <div className="common-block">
                     <div className="user-wrapper">
+
                         {openModal.open ? <ModalPost closeModalFunction={closeModalFunction} 
                                             login={login} 
                                             avatar={userAvatar}
@@ -124,10 +141,13 @@ const Profile = () => {
                             </div>
                         </div>
                         <Publications posts={posts} openModalFunction={openModalFunction}/>
+
                     </div>
                 </div>
+                    )
+                }
             </div>
-        </>
+        </>                   
     );
 }
 
